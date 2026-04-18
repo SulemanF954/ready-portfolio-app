@@ -528,7 +528,12 @@ export default function Home() {
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="scroll-reveal reveal-left text-5xl font-extrabold leading-tight">Hi, I'm <s className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Suleman Farooq</s></h1>
+                <h1 className="scroll-reveal reveal-left text-5xl font-extrabold leading-tight">
+                  Hi, I'm<br />
+                  <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Suleman Farooq
+                  </span>
+                </h1>
                 <div className="subtitle scroll-reveal reveal-right text-slate-600 dark:text-slate-300 text-lg my-4">QA Tester | Software Quality Enthusiast & Frontend Developer</div>
                 <div className="social-icons scroll-reveal reveal-up flex gap-5 my-6">
                   <a href="https://www.linkedin.com/in/suleman-farooq-99254b18b/" target="_blank" rel="noreferrer" className="bg-white dark:bg-slate-800 w-11 h-11 flex items-center justify-center rounded-full shadow hover:bg-blue-600 hover:text-white transition"><i className="fab fa-linkedin-in"></i></a>
@@ -537,8 +542,27 @@ export default function Home() {
                   <a href="https://instagram.com" target="_blank" rel="noreferrer" className="bg-white dark:bg-slate-800 w-11 h-11 flex items-center justify-center rounded-full shadow hover:bg-blue-600 hover:text-white transition"><i className="fab fa-instagram"></i></a>
                 </div>
                 <div className="btn-group scroll-reveal reveal-zoom flex gap-4 my-4">
-                  <button id="hireMeBtn" className="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold shadow hover:-translate-y-1 transition">Hire Me</button>
-                  <button onClick={generateCV} disabled={cvLoading} className="border-2 border-blue-600 text-blue-600 dark:text-blue-400 px-6 py-2 rounded-full font-semibold hover:-translate-y-1 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                  <button
+                    id="hireMeBtn"
+                    className="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold shadow-md 
+               transition-all duration-300 ease-in-out 
+               hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-600/30 hover:bg-blue-700 
+               active:scale-95 active:translate-y-0
+               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  >
+                    Hire Me
+                  </button>
+                  <button
+                    onClick={generateCV}
+                    disabled={cvLoading}
+                    className="border-2 border-blue-600 text-blue-600 dark:text-blue-400 px-6 py-2 rounded-full font-semibold 
+               bg-transparent
+               transition-all duration-300 ease-in-out 
+               hover:scale-105 hover:-translate-y-1 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:shadow-md 
+               active:scale-95 active:translate-y-0
+               disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:translate-y-0 disabled:hover:shadow-none
+               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  >
                     {cvLoading ? 'Generating...' : 'Download CV'}
                   </button>
                 </div>
@@ -560,7 +584,7 @@ export default function Home() {
         {/* Services Section */}
         <section id="services" className="py-20 bg-slate-100/50 dark:bg-slate-800/50">
           <div className="container mx-auto px-6 max-w-6xl">
-            <h2 className="section-title scroll-reveal reveal-up dark:text-slate-400 text-4xl font-bold text-center mb-4">Services</h2>
+            <h2 className="section-title scroll-reveal reveal-up dark:text-slate-300 text-4xl font-bold text-center mb-4">Services</h2>
             <div className="section-sub scroll-reveal reveal-up text-slate-500 dark:text-slate-400 text-center max-w-xl mx-auto mb-12">Empowering digital experiences with quality & creativity</div>
             <div className="services-grid stagger-reveal grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
@@ -589,7 +613,7 @@ export default function Home() {
                 <img src={darkMode ? "/profile-dark.png" : "/profile-light.png"} alt="About me" className="rounded-2xl shadow-2xl" />
               </div>
               <div className="scroll-reveal reveal-right">
-                <h2 className="text-4xl  dark:text-slate-300 font-bold mb-4">About Me</h2>
+                <h2 className="text-4xl dark:text-slate-300 font-bold mb-4">About Me</h2>
                 <p className="text-slate-600 dark:text-slate-300 leading-relaxed">I’m Suleman Farooq, a QA Tester with 1.5 years of hands-on experience, currently transitioning into Frontend Development. I specialize in manual testing, creating detailed test cases, identifying critical bugs, and ensuring high product quality across applications.
 
                   Alongside my QA expertise, I actively build responsive and user-friendly interfaces using modern technologies like React and Next.js. I bring a unique perspective by combining quality assurance with development, allowing me to create applications that are both functional and reliable.
@@ -597,7 +621,7 @@ export default function Home() {
                   I’m passionate about continuous learning, improving user experience, and staying aligned with industry best practices. I thrive in environments where I can solve real-world problems, collaborate with teams, and contribute to building impactful digital products.
 
                   Currently, I’m seeking opportunities where I can grow as a Frontend Developer while leveraging my QA background to deliver high-quality solutions.</p>
-                <button onClick={generateCV} disabled={cvLoading} className="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold shadow mt-6 disabled:opacity-50 disabled:cursor-not-allowed">
+                <button onClick={generateCV} disabled={cvLoading} className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 dark:hover:bg-blue-500 font-semibold shadow mt-6 disabled:opacity-50 disabled:cursor-not-allowed">
                   {cvLoading ? 'Generating...' : 'Download CV'}
                 </button>
               </div>
@@ -636,7 +660,7 @@ export default function Home() {
         {/* Contact Section with Left Animated Card + Right Form */}
         <section id="contact" className="py-20 bg-slate-100/50 dark:bg-slate-800/50">
           <div className="container mx-auto px-6 max-w-6xl">
-            <h2 className="section-title scroll-reveal reveal-up text-4xl font-bold text-center mb-4">Contact me</h2>
+            <h2 className="section-title scroll-reveal reveal-up dark:text-slate-300 text-4xl font-bold text-center mb-4">Contact me</h2>
             <div className="section-sub scroll-reveal reveal-up text-slate-500 dark:text-slate-400 text-center max-w-xl mx-auto mb-12">Cultivating Connections: Reach Out And Connect With Me</div>
 
             <div className="grid lg:grid-cols-2 gap-8">
