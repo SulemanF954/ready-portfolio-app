@@ -18,7 +18,12 @@
     font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold tracking-tight;
   }
 
@@ -28,31 +33,65 @@
 }
 
 @layer components {
+
   /* Layout Components */
   .container {
     @apply max-w-7xl mx-auto px-8;
   }
 
+  .circular-wrapper {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
+  }
+
+  .skill-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    /* space between icon and percent */
+  }
+
+  .skill-inner i {
+    display: block;
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .skill-percent {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 800;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    margin-top: 4px;
+  }
+
+
+
   /* Button Styles with Enhanced Animations */
   .btn-primary {
-    @apply bg-blue-600 text-white px-6 py-3 rounded-3xl font-semibold border-none cursor-pointer 
-           transition-all duration-300 ease-in-out 
-           hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-600/30 hover:scale-105 
-           active:translate-y-0 active:scale-95;
+    @apply bg-blue-600 text-white px-6 py-3 rounded-3xl font-semibold border-none cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-600/30 hover:scale-105 active:translate-y-0 active:scale-95;
   }
 
   .btn-outline {
-    @apply bg-transparent border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-3xl font-semibold cursor-pointer 
-           transition-all duration-300 ease-in-out 
-           hover:-translate-y-1 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:shadow-md hover:scale-105 
-           active:translate-y-0 active:scale-95;
+    @apply bg-transparent border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-3xl font-semibold cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:shadow-md hover:scale-105 active:translate-y-0 active:scale-95;
   }
 
   .btn-secondary {
-    @apply bg-slate-200 text-slate-900 px-6 py-3 rounded-3xl font-semibold border-none cursor-pointer 
-           transition-all duration-300 ease-in-out 
-           hover:bg-slate-300 hover:-translate-y-1 hover:scale-105 
-           active:translate-y-0 active:scale-95;
+    @apply bg-slate-200 text-slate-900 px-6 py-3 rounded-3xl font-semibold border-none cursor-pointer transition-all duration-300 ease-in-out hover:bg-slate-300 hover:-translate-y-1 hover:scale-105 active:translate-y-0 active:scale-95;
   }
 
   /* Special glow animation for Hire Me button */
@@ -156,11 +195,11 @@
   }
 
   /* Stagger Animation */
-  .stagger-reveal > * {
+  .stagger-reveal>* {
     @apply opacity-0 transition-all duration-500 ease-out;
   }
 
-  .stagger-reveal.visible > * {
+  .stagger-reveal.visible>* {
     @apply opacity-100;
   }
 
@@ -183,7 +222,9 @@
   }
 
   /* Input Styles */
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     @apply transition-all duration-200 border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
   }
 
@@ -218,8 +259,16 @@
 
   /* Custom keyframes for glow (already defined in tailwind.config, but here as fallback) */
   @keyframes glow {
-    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.5); }
-    70% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+    0% {
+      box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.5);
+    }
+
+    70% {
+      box-shadow: 0 0 0 8px rgba(37, 99, 235, 0);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+    }
   }
 }
