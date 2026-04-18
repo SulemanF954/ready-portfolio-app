@@ -117,7 +117,7 @@ export default function Home() {
 
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+      anchor.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href')
         if (targetId === "#") return
         const target = document.querySelector(targetId)
@@ -281,7 +281,7 @@ export default function Home() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
- // Generate Professional CV PDF with Your Profile Picture
+  // Generate Professional CV PDF with Your Profile Picture
   const generateCV = async () => {
     try {
       setCvLoading(true)
@@ -477,50 +477,50 @@ export default function Home() {
       </Head>
 
       {/* Navbar */}
-     <nav className="sticky top-0 z-50 w-full bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-black/5 dark:border-white/10">
-  <div className="max-w-6xl mx-auto px-6 md:px-8 py-4 flex justify-between items-center flex-wrap">
-    <a href="#home" className="flex items-center gap-2.5 no-underline">
-      <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/25 transition-transform hover:scale-105">
-        <span className="text-xl font-bold text-white leading-none">SF</span>
-      </div>
-      <div className="text-xl font-bold bg-gradient-to-r from-slate-900 to-blue-600 dark:from-slate-100 dark:to-blue-400 bg-clip-text text-transparent">
-        Suleman<span className="font-medium text-purple-600 dark:text-purple-400">farooq</span>
-      </div>
-    </a>
+      <nav className="sticky top-0 z-50 w-full bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-black/5 dark:border-white/10">
+        <div className="max-w-6xl mx-auto px-6 md:px-8 py-4 flex justify-between items-center flex-wrap">
+          <a href="#home" className="flex items-center gap-2.5 no-underline">
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/25 transition-transform hover:scale-105">
+              <span className="text-xl font-bold text-white leading-none">SF</span>
+            </div>
+            <div className="text-xl font-bold bg-gradient-to-r from-slate-900 to-blue-600 dark:from-slate-100 dark:to-blue-400 bg-clip-text text-transparent">
+              Suleman<span className="font-medium text-purple-600 dark:text-purple-400">farooq</span>
+            </div>
+          </a>
 
-    <div className="hidden md:flex gap-8 items-center">
-      <a href="#home" className="font-medium hover:text-blue-600 transition-colors">Home</a>
-      <a href="#services" className="font-medium hover:text-blue-600 transition-colors">Services</a>
-      <a href="#about" className="font-medium hover:text-blue-600 transition-colors">About me</a>
-      <a href="#portfolio" className="font-medium hover:text-blue-600 transition-colors">Portfolio</a>
-      <a href="#contact" className="font-medium hover:text-blue-600 transition-colors">Contact me</a>
-      <a href="#contact" className="hire-btn px-6 py-2.5 rounded-3xl text-white font-semibold bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-600/20 hover:shadow-none transition-all hover:-translate-y-0.5">Hire Me</a>
-      <button onClick={toggleDarkMode} className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors">
-        <i className={`fas ${darkMode ? 'fa-sun text-yellow-400' : 'fa-moon text-slate-600 dark:text-slate-300'} text-lg`}></i>
-      </button>
-    </div>
+          <div className="hidden md:flex gap-8 items-center">
+            <a href="#home" className="font-medium hover:text-blue-600 transition-colors">Home</a>
+            <a href="#services" className="font-medium hover:text-blue-600 transition-colors">Services</a>
+            <a href="#about" className="font-medium hover:text-blue-600 transition-colors">About me</a>
+            <a href="#portfolio" className="font-medium hover:text-blue-600 transition-colors">Portfolio</a>
+            <a href="#contact" className="font-medium hover:text-blue-600 transition-colors">Contact me</a>
+            <a href="#contact" className="hire-btn px-6 py-2.5 rounded-3xl text-white font-semibold bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-600/20 hover:shadow-none transition-all hover:-translate-y-0.5">Hire Me</a>
+            <button onClick={toggleDarkMode} className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors">
+              <i className={`fas ${darkMode ? 'fa-sun text-yellow-400' : 'fa-moon text-slate-600 dark:text-slate-300'} text-lg`}></i>
+            </button>
+          </div>
 
-    <div className="flex md:hidden gap-4 items-center">
-      <button onClick={toggleDarkMode} className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors">
-        <i className={`fas ${darkMode ? 'fa-sun text-yellow-400' : 'fa-moon text-slate-600 dark:text-slate-300'} text-lg`}></i>
-      </button>
-      <div className="text-2xl cursor-pointer" onClick={() => setMenuActive(!menuActive)}>
-        <i className="fas fa-bars text-slate-900 dark:text-slate-100"></i>
-      </div>
-    </div>
+          <div className="flex md:hidden gap-4 items-center">
+            <button onClick={toggleDarkMode} className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors">
+              <i className={`fas ${darkMode ? 'fa-sun text-yellow-400' : 'fa-moon text-slate-600 dark:text-slate-300'} text-lg`}></i>
+            </button>
+            <div className="text-2xl cursor-pointer" onClick={() => setMenuActive(!menuActive)}>
+              <i className="fas fa-bars text-slate-900 dark:text-slate-100"></i>
+            </div>
+          </div>
 
-    {menuActive && (
-      <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-t border-black/5 dark:border-white/10 flex flex-col gap-4 p-4 z-50">
-        <a href="#home" onClick={() => setMenuActive(false)} className="font-medium hover:text-blue-600 transition-colors">Home</a>
-        <a href="#services" onClick={() => setMenuActive(false)} className="font-medium hover:text-blue-600 transition-colors">Services</a>
-        <a href="#about" onClick={() => setMenuActive(false)} className="font-medium hover:text-blue-600 transition-colors">About me</a>
-        <a href="#portfolio" onClick={() => setMenuActive(false)} className="font-medium hover:text-blue-600 transition-colors">Portfolio</a>
-        <a href="#contact" onClick={() => setMenuActive(false)} className="font-medium hover:text-blue-600 transition-colors">Contact me</a>
-        <a href="#contact" onClick={() => setMenuActive(false)} className="hire-btn px-6 py-2.5 rounded-3xl text-white font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-center">Hire Me</a>
-      </div>
-    )}
-  </div>
-</nav>
+          {menuActive && (
+            <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-t border-black/5 dark:border-white/10 flex flex-col gap-4 p-4 z-50">
+              <a href="#home" onClick={() => setMenuActive(false)} className="font-medium hover:text-blue-600 transition-colors">Home</a>
+              <a href="#services" onClick={() => setMenuActive(false)} className="font-medium hover:text-blue-600 transition-colors">Services</a>
+              <a href="#about" onClick={() => setMenuActive(false)} className="font-medium hover:text-blue-600 transition-colors">About me</a>
+              <a href="#portfolio" onClick={() => setMenuActive(false)} className="font-medium hover:text-blue-600 transition-colors">Portfolio</a>
+              <a href="#contact" onClick={() => setMenuActive(false)} className="font-medium hover:text-blue-600 transition-colors">Contact me</a>
+              <a href="#contact" onClick={() => setMenuActive(false)} className="hire-btn px-6 py-2.5 rounded-3xl text-white font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-center">Hire Me</a>
+            </div>
+          )}
+        </div>
+      </nav>
 
       <main>
         {/* Hero Section */}
@@ -528,7 +528,7 @@ export default function Home() {
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="scroll-reveal reveal-left text-5xl font-extrabold leading-tight">Hi, I'm <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Suleman Farooq</span></h1>
+                <h1 className="scroll-reveal reveal-left text-5xl font-extrabold leading-tight">Hi, I'm <s className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Suleman Farooq</s></h1>
                 <div className="subtitle scroll-reveal reveal-right text-slate-600 dark:text-slate-300 text-lg my-4">QA Tester | Software Quality Enthusiast & Frontend Developer</div>
                 <div className="social-icons scroll-reveal reveal-up flex gap-5 my-6">
                   <a href="https://www.linkedin.com/in/suleman-farooq-99254b18b/" target="_blank" rel="noreferrer" className="bg-white dark:bg-slate-800 w-11 h-11 flex items-center justify-center rounded-full shadow hover:bg-blue-600 hover:text-white transition"><i className="fab fa-linkedin-in"></i></a>
@@ -560,7 +560,7 @@ export default function Home() {
         {/* Services Section */}
         <section id="services" className="py-20 bg-slate-100/50 dark:bg-slate-800/50">
           <div className="container mx-auto px-6 max-w-6xl">
-            <h2 className="section-title scroll-reveal reveal-up text-4xl font-bold text-center mb-4">Services</h2>
+            <h2 className="section-title scroll-reveal reveal-up dark:text-slate-400 text-4xl font-bold text-center mb-4">Services</h2>
             <div className="section-sub scroll-reveal reveal-up text-slate-500 dark:text-slate-400 text-center max-w-xl mx-auto mb-12">Empowering digital experiences with quality & creativity</div>
             <div className="services-grid stagger-reveal grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
@@ -589,14 +589,14 @@ export default function Home() {
                 <img src={darkMode ? "/profile-dark.png" : "/profile-light.png"} alt="About me" className="rounded-2xl shadow-2xl" />
               </div>
               <div className="scroll-reveal reveal-right">
-                <h2 className="text-4xl font-bold mb-4">About Me</h2>
+                <h2 className="text-4xl  dark:text-slate-300 font-bold mb-4">About Me</h2>
                 <p className="text-slate-600 dark:text-slate-300 leading-relaxed">I’m Suleman Farooq, a QA Tester with 1.5 years of hands-on experience, currently transitioning into Frontend Development. I specialize in manual testing, creating detailed test cases, identifying critical bugs, and ensuring high product quality across applications.
 
-Alongside my QA expertise, I actively build responsive and user-friendly interfaces using modern technologies like React and Next.js. I bring a unique perspective by combining quality assurance with development, allowing me to create applications that are both functional and reliable.
+                  Alongside my QA expertise, I actively build responsive and user-friendly interfaces using modern technologies like React and Next.js. I bring a unique perspective by combining quality assurance with development, allowing me to create applications that are both functional and reliable.
 
-I’m passionate about continuous learning, improving user experience, and staying aligned with industry best practices. I thrive in environments where I can solve real-world problems, collaborate with teams, and contribute to building impactful digital products.
+                  I’m passionate about continuous learning, improving user experience, and staying aligned with industry best practices. I thrive in environments where I can solve real-world problems, collaborate with teams, and contribute to building impactful digital products.
 
-Currently, I’m seeking opportunities where I can grow as a Frontend Developer while leveraging my QA background to deliver high-quality solutions.</p>
+                  Currently, I’m seeking opportunities where I can grow as a Frontend Developer while leveraging my QA background to deliver high-quality solutions.</p>
                 <button onClick={generateCV} disabled={cvLoading} className="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold shadow mt-6 disabled:opacity-50 disabled:cursor-not-allowed">
                   {cvLoading ? 'Generating...' : 'Download CV'}
                 </button>
@@ -608,7 +608,7 @@ Currently, I’m seeking opportunities where I can grow as a Frontend Developer 
         {/* Technical Mastery */}
         <section id="skills" className="py-20 bg-slate-100/50 dark:bg-slate-800/50">
           <div className="container mx-auto px-6 max-w-6xl">
-            <h2 className="section-title scroll-reveal reveal-up text-4xl font-bold text-center mb-4">Technical Mastery</h2>
+            <h2 className="section-title scroll-reveal dark:text-slate-300 reveal-up text-4xl font-bold text-center mb-4">Technical Mastery</h2>
             <div className="section-sub scroll-reveal reveal-up text-slate-500 dark:text-slate-400 text-center max-w-xl mx-auto mb-12">Colorful icons & animated progress on scroll</div>
             <div className="skills-container stagger-reveal flex flex-wrap justify-center gap-8" ref={skillsContainerRef}></div>
           </div>
@@ -617,7 +617,7 @@ Currently, I’m seeking opportunities where I can grow as a Frontend Developer 
         {/* Portfolio Section */}
         <section id="portfolio" className="py-20">
           <div className="container mx-auto px-6 max-w-6xl">
-            <h2 className="section-title scroll-reveal reveal-up text-4xl font-bold text-center mb-4">Portfolio</h2>
+            <h2 className="section-title scroll-reveal reveal-up text-4xl dark:text-slate-300 font-bold text-center mb-4">Portfolio</h2>
             <div className="section-sub scroll-reveal reveal-up text-slate-500 dark:text-slate-400 text-center max-w-xl mx-auto mb-12">Creative projects, real impact</div>
             <div className="portfolio-grid stagger-reveal grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {projects.map((proj, idx) => (
@@ -638,7 +638,7 @@ Currently, I’m seeking opportunities where I can grow as a Frontend Developer 
           <div className="container mx-auto px-6 max-w-6xl">
             <h2 className="section-title scroll-reveal reveal-up text-4xl font-bold text-center mb-4">Contact me</h2>
             <div className="section-sub scroll-reveal reveal-up text-slate-500 dark:text-slate-400 text-center max-w-xl mx-auto mb-12">Cultivating Connections: Reach Out And Connect With Me</div>
-            
+
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Left Side - Animated Contact Card */}
               <div className="scroll-reveal reveal-left">
@@ -648,7 +648,7 @@ Currently, I’m seeking opportunities where I can grow as a Frontend Developer 
                     <h3 className="text-3xl font-bold mt-4">Let's connect</h3>
                     <p className="mt-2 text-blue-100/90">I'm always excited to work on new projects and collaborations.</p>
                   </div>
-                  
+
                   <div className="space-y-5">
                     <div className="bg-white/10 rounded-2xl p-5 backdrop-blur-sm transition-all hover:bg-white/20">
                       <p className="text-sm uppercase tracking-[0.2em] text-blue-100/90">Name</p>
@@ -672,7 +672,7 @@ Currently, I’m seeking opportunities where I can grow as a Frontend Developer 
                       <p className="mt-2 text-lg font-semibold">Multan, Pakistan</p>
                     </div>
                   </div>
-                  
+
                   <div className="mt-8 flex gap-4 justify-start">
                     <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-xl hover:bg-white/30 transition">
                       <i className="fab fa-linkedin-in"></i>
