@@ -7,6 +7,7 @@ import About from '../components/About';
 import Skills from '../components/Skills';
 import Portfolio from '../components/Portfolio';
 import FloatingWhatsApp from '../components/FloatingWhatsApp';
+import ScrollToTop from '../components/ScrollToTop'; // <-- NEW IMPORT
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import { useDarkMode } from '../hooks/useDarkMode';
@@ -36,7 +37,8 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      <FloatingWhatsApp /> {/* Add this line to include the WhatsApp component */}
+      <FloatingWhatsApp />  {/* Left side (as you previously moved) */}
+      <ScrollToTop />       {/* Right side up arrow */}
     </div>
   );
 }
