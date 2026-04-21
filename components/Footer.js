@@ -22,7 +22,7 @@ export default function Footer() {
             <a href="https://www.facebook.com/sulemanfarooq" className="hover:text-white"><i className="fab fa-facebook"></i></a>
             <a href="https://www.instagram.com/sulemanfarooq" className="hover:text-white"><i className="fab fa-instagram"></i></a>
           </div>
-          <div className="footer-contact flex gap-4">
+          <div className="footer-contact flex flex-col sm:flex-row gap-4">
             <p><i className="far fa-envelope"></i> sulemanfarooq954@gmail.com</p>
             <p><i className="fas fa-phone-alt"></i> +92307-6315295</p>
           </div>
