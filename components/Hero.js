@@ -33,9 +33,9 @@ export default function Hero({ cvLoading, generateCV, darkMode }) {
               </button>
             </div>
             <div id="statsContainer" className="stats stagger-reveal flex gap-6 mt-6">
-              <div className="stat-card bg-white dark:bg-slate-800 p-4 rounded-2xl text-center min-w-[110px] shadow"><div className="stat-number text-3xl font-extrabold text-blue-600" id="expCount">0</div><div>Experience (yrs)</div></div>
-              <div className="stat-card bg-white dark:bg-slate-800 p-4 rounded-2xl text-center min-w-[110px] shadow"><div className="stat-number text-3xl font-extrabold text-blue-600" id="projectCount">0</div><div>Projects done</div></div>
-              <div className="stat-card bg-white dark:bg-slate-800 p-4 rounded-2xl text-center min-w-[110px] shadow"><div className="stat-number text-3xl font-extrabold text-blue-600" id="clientCount">0</div><div>Happy Clients</div></div>
+              <div className="stat-card bg-white dark:bg-slate-800 p-4 rounded-2xl text-center min-w-[110px] shadow"><div className="stat-number text-3xl font-extrabold text-blue-600" id="expCount">2.5</div><div>Experience (yrs)</div></div>
+              <div className="stat-card bg-white dark:bg-slate-800 p-4 rounded-2xl text-center min-w-[110px] shadow"><div className="stat-number text-3xl font-extrabold text-blue-600" id="projectCount">8</div><div>Projects Done</div></div>
+              <div className="stat-card bg-white dark:bg-slate-800 p-4 rounded-2xl text-center min-w-[110px] shadow"><div className="stat-number text-3xl font-extrabold text-blue-600" id="clientCount">4</div><div>Happy Clients</div></div>
             </div>
           </div>
           <div className="hero-right scroll-reveal reveal-zoom flex justify-center">
