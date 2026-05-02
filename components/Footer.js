@@ -8,7 +8,7 @@ export default function Footer() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-  // ✅ Correct Social Links
+  // Social Links
   const socialLinks = {
     linkedin: "https://www.linkedin.com/in/suleman-farooq-99254b18b/",
     github: "https://github.com/SulemanF954",
