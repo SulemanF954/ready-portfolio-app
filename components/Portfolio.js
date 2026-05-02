@@ -33,7 +33,7 @@ export default function Portfolio() {
           transition={{ delay: 0.1 }}
           className="text-center text-slate-500 dark:text-slate-400 max-w-xl mx-auto mb-12"
         >
-          Creative projects, real impact
+          Creative Projects, Real Impact
         </motion.div>
 
         <motion.div
