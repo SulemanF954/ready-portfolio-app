@@ -7,16 +7,31 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { name, email, phone, service, timeline, message } = req.body;
+        const { name, email, phone, service, timeline, message } = req.body || {};
+
+        if (!name || !email || !service || !message) {
+            return res.status(400).json({
+                success: false,
+                message: 'Missing required fields: name, email, service, and message are required.',
+            });
+        }
+
+        if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+            console.error('Missing email configuration: GMAIL_USER or GMAIL_APP_PASSWORD environment variables are not set.');
+            return res.status(500).json({
+                success: false,
+                message: 'Email service is not configured. Please contact the site owner.',
+            });
+        }
 
         const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com', // Use the explicit host instead of the 'service' shorthand
+            host: 'smtp.gmail.com',
             port: 587,
-            secure: false, // true for 465, false for other ports
+            secure: false,
             auth: {
-                user: process.env.GMAIL_USER, // Your full Gmail address
-                pass: process.env.GMAIL_APP_PASSWORD // The 16-char password (spaces removed)
-            }
+                user: process.env.GMAIL_USER,
+                pass: process.env.GMAIL_APP_PASSWORD,
+            },
         });
 
         await transporter.sendMail({
@@ -44,7 +59,11 @@ Message: ${message}
 
         res.status(200).json({ success: true, message: 'Email sent!' });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: 'Failed to send email.' });
+        console.error('Contact API error:', error);
+        const userMessage =
+            error.code === 'EAUTH'
+                ? 'Email authentication failed. Please contact the site owner.'
+                : 'Failed to send email. Please try again later.';
+        res.status(500).json({ success: false, message: userMessage });
     }
 }
