@@ -16,7 +16,7 @@ export default function Services() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeUp}
-          className="text-4xl font-bold text-center mb-4 dark:text-slate-300"
+          className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-slate-900 to-blue-600 dark:from-slate-100 dark:to-blue-400 bg-clip-text text-transparent"
         >
           Services
         </motion.h2>
@@ -27,7 +27,7 @@ export default function Services() {
           variants={fadeUp}
           className="text-center text-slate-500 dark:text-slate-400 max-w-xl mx-auto mb-12"
         >
-          Empowering digital experiences with quality & creativity
+          Empowering digital experiences with quality &amp; creativity
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

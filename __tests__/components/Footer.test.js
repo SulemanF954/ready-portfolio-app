@@ -10,7 +10,7 @@ describe('Footer', () => {
 
   it('renders navigation links', () => {
     render(<Footer />);
-    const navItems = ['Home', 'Services', 'About', 'Portfolio', 'Contact'];
+    const navItems = ['Home', 'Services', 'About', 'Experience', 'Portfolio', 'Testimonials', 'Contact'];
     navItems.forEach((item) => {
       const link = screen.getByText(item);
       expect(link).toBeInTheDocument();
@@ -34,6 +34,6 @@ describe('Footer', () => {
 
   it('renders copyright text', () => {
     render(<Footer />);
-    expect(screen.getByText(/Designed by @Suleman Farooq/)).toBeInTheDocument();
+    expect(screen.getByText(/Suleman Farooq/)).toBeInTheDocument();
   });
 });

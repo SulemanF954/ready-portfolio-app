@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 
 export default function About({ cvLoading, generateCV, darkMode }) {
   const ref = useRef(null);
@@ -18,9 +19,11 @@ export default function About({ cvLoading, generateCV, darkMode }) {
             style={{ y }}
             className="scroll-reveal reveal-left"
           >
-            <img
+            <Image
               src={darkMode ? '/profile-dark.png' : '/profile-light.png'}
               alt="About me"
+              width={500}
+              height={500}
               className="rounded-2xl shadow-2xl"
             />
           </motion.div>
@@ -30,15 +33,15 @@ export default function About({ cvLoading, generateCV, darkMode }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl dark:text-slate-300 font-bold mb-4">About Me</h2>
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-slate-900 to-blue-600 dark:from-slate-100 dark:to-blue-400 bg-clip-text text-transparent">About Me</h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-              I'm Suleman Farooq, a QA Tester with 1.5 years of hands-on experience, currently transitioning into Frontend Development. I specialize in manual testing, creating detailed test cases, identifying critical bugs, and ensuring high product quality across applications.
+              I&apos;m Suleman Farooq, a QA Tester with 1.5 years of hands-on experience, currently transitioning into Frontend Development. I specialize in manual testing, creating detailed test cases, identifying critical bugs, and ensuring high product quality across applications.
               <br /><br />
               Alongside my QA expertise, I actively build responsive and user-friendly interfaces using modern technologies like React and Next.js. I bring a unique perspective by combining quality assurance with development, allowing me to create applications that are both functional and reliable.
               <br /><br />
-              I'm passionate about continuous learning, improving user experience, and staying aligned with industry best practices. I thrive in environments where I can solve real-world problems, collaborate with teams, and contribute to building impactful digital products.
+              I&apos;m passionate about continuous learning, improving user experience, and staying aligned with industry best practices. I thrive in environments where I can solve real-world problems, collaborate with teams, and contribute to building impactful digital products.
               <br /><br />
-              Currently, I'm seeking opportunities where I can grow as a Frontend Developer while leveraging my QA background to deliver high-quality solutions.
+              Currently, I&apos;m seeking opportunities where I can grow as a Frontend Developer while leveraging my QA background to deliver high-quality solutions.
             </p>
             <motion.button
               onClick={generateCV}

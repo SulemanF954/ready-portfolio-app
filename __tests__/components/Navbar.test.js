@@ -15,7 +15,7 @@ describe('Navbar', () => {
 
   it('renders desktop navigation links', () => {
     render(<Navbar {...defaultProps} />);
-    ['Home', 'Services', 'About me', 'Portfolio', 'Contact me'].forEach((item) => {
+    ['Home', 'Services', 'About', 'Experience', 'Portfolio', 'Testimonials', 'Contact'].forEach((item) => {
       expect(screen.getAllByText(item).length).toBeGreaterThanOrEqual(1);
     });
   });

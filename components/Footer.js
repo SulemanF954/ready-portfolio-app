@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { socialLinks } from "../utils/data";
 
 export default function Footer() {
   const fadeUp = {
@@ -8,12 +9,13 @@ export default function Footer() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-  // Social Links
-  const socialLinks = {
-    linkedin: "https://www.linkedin.com/in/suleman-farooq-99254b18b/",
-    github: "https://github.com/SulemanF954",
-    facebook: "#",
-    instagram: "#",
+  const currentYear = new Date().getFullYear();
+
+  const socialIconMap = {
+    linkedin: { icon: "fab fa-linkedin-in", url: socialLinks.linkedin },
+    github: { icon: "fab fa-github", url: socialLinks.github },
+    facebook: { icon: "fab fa-facebook-f", url: socialLinks.facebook },
+    instagram: { icon: "fab fa-instagram", url: socialLinks.instagram },
   };
 
   return (
@@ -27,7 +29,7 @@ export default function Footer() {
           className="flex flex-col justify-between items-center gap-6"
         >
           {/* Logo */}
-          <div className="footer-logo flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold">SF</span>
             </div>
@@ -37,8 +39,8 @@ export default function Footer() {
           </div>
 
           {/* Navigation */}
-          <div className="footer-nav flex gap-6 flex-wrap justify-center">
-            {["Home", "Services", "About", "Portfolio", "Contact"].map(
+          <div className="flex gap-6 flex-wrap justify-center">
+            {["Home", "Services", "About", "Experience", "Portfolio", "Testimonials", "Contact"].map(
               (item) => (
                 <a
                   key={item}
@@ -51,24 +53,24 @@ export default function Footer() {
             )}
           </div>
 
-          {/* ✅ Social Links (FIXED) */}
-          <div className="footer-social flex gap-4 text-2xl">
-            {Object.keys(socialLinks).map((social) => (
+          {/* Social Links */}
+          <div className="flex gap-4 text-2xl">
+            {Object.keys(socialIconMap).map((key) => (
               <motion.a
-                key={social}
-                href={socialLinks[social]}
+                key={key}
+                href={socialIconMap[key].url}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, rotate: 5 }}
                 className="hover:text-white transition"
               >
-                <i className={`fab fa-${social}`}></i>
+                <i className={socialIconMap[key].icon}></i>
               </motion.a>
             ))}
           </div>
 
           {/* Contact */}
-          <div className="footer-contact flex flex-col sm:flex-row gap-4 text-center">
+          <div className="flex flex-col sm:flex-row gap-4 text-center">
             <p>
               <i className="far fa-envelope"></i>{" "}
               sulemanfarooq954@gmail.com
@@ -80,8 +82,8 @@ export default function Footer() {
         </motion.div>
 
         {/* Copyright */}
-        <div className="copyright text-center text-sm border-t border-slate-800 pt-6 mt-6">
-          Designed by @Suleman Farooq — QA Tester & Frontend Developer
+        <div className="text-center text-sm border-t border-slate-800 pt-6 mt-6">
+          &copy; {currentYear} Suleman Farooq &mdash; QA Tester &amp; Frontend Developer. All rights reserved.
         </div>
       </div>
     </footer>
