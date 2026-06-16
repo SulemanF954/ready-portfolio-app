@@ -22,7 +22,7 @@ export default function Portfolio() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl font-bold text-center mb-4 dark:text-slate-300"
+          className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-slate-900 to-blue-600 dark:from-slate-100 dark:to-blue-400 bg-clip-text text-transparent"
         >
           Portfolio
         </motion.h2>
@@ -44,19 +44,24 @@ export default function Portfolio() {
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {projects.map((proj, idx) => (
-            <motion.div
+            <motion.a
               key={idx}
+              href={proj.link}
               variants={childVariants}
               whileHover={{ scale: 1.05 }}
-              className="project-card relative rounded-2xl overflow-hidden h-64 bg-cover bg-center cursor-pointer group"
+              className="project-card relative rounded-2xl overflow-hidden h-64 bg-cover bg-center cursor-pointer group block"
               style={{ backgroundImage: `linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${proj.bg})` }}
             >
               <div className="absolute inset-0 bg-black/75 backdrop-blur-sm flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-all duration-300 text-white text-center p-4">
                 <h3 className="text-2xl font-bold">{proj.name}</h3>
-                <p>{proj.category}</p>
-                <i className="fas fa-eye mt-2 text-xl animate-pulse"></i>
+                <p className="text-slate-300">{proj.category}</p>
+                <div className="flex gap-3 mt-3">
+                  <span className="px-3 py-1 bg-white/20 rounded-full text-sm">
+                    <i className="fas fa-eye mr-1" /> View
+                  </span>
+                </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </motion.div>
       </div>

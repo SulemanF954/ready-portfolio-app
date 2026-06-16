@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 export default function Navbar({ darkMode, toggleDarkMode }) {
   const [menuActive, setMenuActive] = useState(false);
 
+  const navItems = ['Home', 'Services', 'About', 'Experience', 'Portfolio', 'Testimonials', 'Contact'];
+
   const navVariants = {
     hidden: { y: -100 },
     visible: { y: 0, transition: { type: 'spring', stiffness: 100, damping: 20 } },
@@ -29,12 +31,12 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
           </div>
         </a>
 
-        <div className="hidden md:flex gap-8 items-center">
-          {['Home', 'Services', 'About me', 'Portfolio', 'Contact me'].map((item) => (
+        <div className="hidden md:flex gap-6 items-center">
+          {navItems.map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase().replace(' ', '')}`}
-              className="nav-link font-medium hover:text-blue-600 transition-colors"
+              className="nav-link font-medium hover:text-blue-600 transition-colors text-sm"
             >
               {item}
             </a>
@@ -43,7 +45,7 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
             href="#contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="hire-btn px-6 py-2.5 rounded-3xl text-white font-semibold bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-600/20 hover:shadow-none transition-all"
+            className="hire-btn px-5 py-2 rounded-3xl text-white font-semibold bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-600/20 hover:shadow-none transition-all text-sm"
           >
             Hire Me
           </motion.a>
@@ -56,19 +58,23 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
           </motion.button>
         </div>
 
-        {/* mobile menu – same as before but with motion */}
+        {/* Mobile menu toggle */}
         <div className="flex md:hidden gap-4 items-center">
           <button onClick={toggleDarkMode} className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700">
             <i className={`fas ${darkMode ? 'fa-sun text-yellow-400' : 'fa-moon text-slate-600'}`} />
           </button>
           <div className="text-2xl cursor-pointer" onClick={() => setMenuActive(!menuActive)}>
-            <i className="fas fa-bars text-slate-900 dark:text-slate-100" />
+            <i className={`fas ${menuActive ? 'fa-times' : 'fa-bars'} text-slate-900 dark:text-slate-100`} />
           </div>
         </div>
 
         {menuActive && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-t border-black/5 dark:border-white/10 flex flex-col gap-4 p-4 z-50">
-            {['Home', 'Services', 'About me', 'Portfolio', 'Contact me'].map((item) => (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-t border-black/5 dark:border-white/10 flex flex-col gap-4 p-4 z-50"
+          >
+            {navItems.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase().replace(' ', '')}`}
@@ -78,10 +84,10 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
                 {item}
               </a>
             ))}
-            <a href="#contact" className="hire-btn px-6 py-2.5 rounded-3xl text-white font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-center">
+            <a href="#contact" onClick={() => setMenuActive(false)} className="hire-btn px-6 py-2.5 rounded-3xl text-white font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-center">
               Hire Me
             </a>
-          </div>
+          </motion.div>
         )}
       </div>
     </motion.nav>

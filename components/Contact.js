@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { socialLinks } from '../utils/data';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -52,7 +53,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl font-bold text-center mb-4 dark:text-slate-300"
+          className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-slate-900 to-blue-600 dark:from-slate-100 dark:to-blue-400 bg-clip-text text-transparent"
         >
           Contact me
         </motion.h2>
@@ -77,8 +78,8 @@ export default function Contact() {
             <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl p-8 text-white shadow-2xl transform transition-all duration-500 hover:scale-[1.02]">
               <div className="mb-6">
                 <div className="text-sm uppercase tracking-[0.3em] text-blue-200/80">Get in touch</div>
-                <h3 className="text-3xl font-bold mt-4">Let's connect</h3>
-                <p className="mt-2 text-blue-100/90">I'm always excited to work on new projects and collaborations.</p>
+                <h3 className="text-3xl font-bold mt-4">Let&apos;s connect</h3>
+                <p className="mt-2 text-blue-100/90">I&apos;m always excited to work on new projects and collaborations.</p>
               </div>
 
               <div className="space-y-5">
@@ -86,7 +87,7 @@ export default function Contact() {
                   { label: 'Name', value: 'Suleman Farooq' },
                   { label: 'Email', value: 'sulemanfarooq954@gmail.com' },
                   { label: 'Phone', value: '+92 307 6315295' },
-                  { label: 'Availability', value: '✅ Freelance & Remote Work', sub: 'Open for full-time opportunities as well' },
+                  { label: 'Availability', value: 'Freelance & Remote Work', sub: 'Open for full-time opportunities as well' },
                   { label: 'Address', value: 'Multan, Pakistan' },
                 ].map((item, idx) => (
                   <div key={idx} className="bg-white/10 rounded-2xl p-5 backdrop-blur-sm transition-all hover:bg-white/20">
@@ -98,14 +99,20 @@ export default function Contact() {
               </div>
 
               <div className="mt-8 flex gap-4">
-                {['linkedin-in', 'github', 'twitter'].map((icon, idx) => (
+                {[
+                  { icon: 'linkedin-in', url: socialLinks.linkedin },
+                  { icon: 'github', url: socialLinks.github },
+                  { icon: 'twitter', url: '#' },
+                ].map((social) => (
                   <motion.a
-                    key={icon}
-                    href="#"
+                    key={social.icon}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.1 }}
                     className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-xl hover:bg-white/30 transition"
                   >
-                    <i className={`fab fa-${icon}`}></i>
+                    <i className={`fab fa-${social.icon}`}></i>
                   </motion.a>
                 ))}
               </div>
@@ -120,18 +127,6 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl"
           >
-            {/* <div className="flex justify-end mb-4">
-              <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
-                <input
-                  type="checkbox"
-                  checked={useWhatsApp}
-                  onChange={() => setUseWhatsApp(!useWhatsApp)}
-                  className="rounded"
-                />
-                Send via WhatsApp (instant)
-              </label>
-            </div> */}
-
             <form onSubmit={handleSubmit}>
               <AnimatePresence>
                 {formStatus.message && (
@@ -172,7 +167,6 @@ export default function Contact() {
                   <option>UI/UX Design</option>
                   <option>Frontend Dev</option>
                 </select>
-                {/* Custom arrow icon */}
                 <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
                   <i className="fas fa-chevron-down text-slate-400 dark:text-slate-500 text-sm"></i>
                 </div>
