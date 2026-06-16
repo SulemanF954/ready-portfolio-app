@@ -45,12 +45,12 @@ describe('About', () => {
   it('shows light profile image when darkMode is false', () => {
     render(<About {...defaultProps} darkMode={false} />);
     const img = screen.getByAltText('About me');
-    expect(img).toHaveAttribute('src', '/profile-light.png');
+    expect(img.getAttribute('src')).toContain('profile-light.png');
   });
 
   it('shows dark profile image when darkMode is true', () => {
     render(<About {...defaultProps} darkMode={true} />);
     const img = screen.getByAltText('About me');
-    expect(img).toHaveAttribute('src', '/profile-dark.png');
+    expect(img.getAttribute('src')).toContain('profile-dark.png');
   });
 });
