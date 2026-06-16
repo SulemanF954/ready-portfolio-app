@@ -1,57 +1,12 @@
 import { useEffect, useRef } from 'react'
+import { skillsData } from '../utils/data'
+import { drawCircle, animateProgress } from '../utils/canvas'
+
+const CANVAS_DRAW_OPTS = { radius: 54, lineWidth: 10 };
 
 const SkillsCanvas = () => {
-  const skillsData = [
-    { name: "HTML", percent: 90, icon: "fab fa-html5", color: "#E44D26" },
-    { name: "CSS", percent: 85, icon: "fab fa-css3-alt", color: "#264DE4" },
-    { name: "Tailwind CSS", percent: 85, icon: "fab fa-css3", color: "#06B6D4" },
-    { name: "React.js", percent: 80, icon: "fab fa-react", color: "#61DAFB" },
-    { name: "Next.js", percent: 75, icon: "fab fa-node-js", color: "#000000" },
-    { name: "Git/GitHub", percent: 80, icon: "fab fa-git-alt", color: "#F05032" }
-  ]
-
   const skillRefs = useRef([])
   const observerRef = useRef(null)
-
-  const drawCircleOnCanvas = (canvas, percent, color) => {
-    const ctx = canvas.getContext('2d')
-    const size = canvas.width
-    const center = size / 2
-    const radius = 54
-    const startAngle = -0.5 * Math.PI
-    const endAngle = startAngle + (2 * Math.PI * percent / 100)
-    ctx.clearRect(0, 0, size, size)
-    ctx.beginPath()
-    ctx.arc(center, center, radius, 0, 2 * Math.PI)
-    ctx.strokeStyle = "#e2e8f0"
-    ctx.lineWidth = 10
-    ctx.stroke()
-    ctx.beginPath()
-    ctx.arc(center, center, radius, startAngle, endAngle)
-    ctx.strokeStyle = color
-    ctx.lineWidth = 10
-    ctx.lineCap = "round"
-    ctx.stroke()
-  }
-
-  const animateSkillProgress = (canvas, percentSpan, targetPercent, color, duration = 1200) => {
-    let startPercent = 0
-    const startTime = performance.now()
-    function step(now) {
-      const elapsed = now - startTime
-      let progress = Math.min(1, elapsed / duration)
-      const newPercent = Math.floor(startPercent + (targetPercent - startPercent) * progress)
-      if (newPercent >= targetPercent) {
-        drawCircleOnCanvas(canvas, targetPercent, color)
-        percentSpan.textContent = targetPercent + "%"
-        return
-      }
-      drawCircleOnCanvas(canvas, newPercent, color)
-      percentSpan.textContent = newPercent + "%"
-      requestAnimationFrame(step)
-    }
-    requestAnimationFrame(step)
-  }
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -63,7 +18,14 @@ const SkillsCanvas = () => {
           const percentSpan = entry.target.querySelector('.skill-percent')
           if (canvas && percentSpan && !entry.target.dataset.animated) {
             entry.target.dataset.animated = 'true'
-            animateSkillProgress(canvas, percentSpan, skill.percent, skill.color)
+            animateProgress({
+              canvas,
+              label: percentSpan,
+              startPercent: 0,
+              targetPercent: skill.percent,
+              color: skill.color,
+              drawOpts: CANVAS_DRAW_OPTS,
+            })
           }
         }
       })

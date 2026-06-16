@@ -1,55 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { skillsData } from '../utils/data';
+import { drawCircle, animateProgress } from '../utils/canvas';
 
 export const useSkillCircles = () => {
   const containerRef = useRef(null);
   const instances = useRef([]);
-
-  const drawCircle = (canvas, percent, color) => {
-    const ctx = canvas.getContext('2d');
-    const size = canvas.width;
-    const center = size / 2;
-    const radius = 52; // slightly smaller to give more space for inner content
-    const startAngle = -0.5 * Math.PI;
-    const endAngle = startAngle + (2 * Math.PI * percent / 100);
-    ctx.clearRect(0, 0, size, size);
-    ctx.beginPath();
-    ctx.arc(center, center, radius, 0, 2 * Math.PI);
-    ctx.strokeStyle = "#e2e8f0";
-    ctx.lineWidth = 8;
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(center, center, radius, startAngle, endAngle);
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 8;
-    ctx.lineCap = "round";
-    ctx.stroke();
-  };
-
-  const animateSkill = (skillObj, targetPercent, duration = 1200) => {
-    if (skillObj.animating) return;
-    skillObj.animating = true;
-    const startPercent = skillObj.currentPercent;
-    const diff = targetPercent - startPercent;
-    const startTime = performance.now();
-    const step = (now) => {
-      const elapsed = now - startTime;
-      let progress = Math.min(1, elapsed / duration);
-      const newPercent = Math.floor(startPercent + diff * progress);
-      if (newPercent >= targetPercent) {
-        drawCircle(skillObj.canvas, targetPercent, skillObj.color);
-        skillObj.currentPercent = targetPercent;
-        if (skillObj.percentSpan) skillObj.percentSpan.innerText = targetPercent + "%";
-        skillObj.animating = false;
-        return;
-      }
-      drawCircle(skillObj.canvas, newPercent, skillObj.color);
-      if (skillObj.percentSpan) skillObj.percentSpan.innerText = newPercent + "%";
-      skillObj.currentPercent = newPercent;
-      requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  };
 
   const buildSkills = () => {
     const container = containerRef.current;
@@ -75,7 +30,7 @@ export const useSkillCircles = () => {
       canvas.height = 130;
       canvas.style.display = 'block'; // remove extra spacing
       canvas.style.margin = '0 auto';
-      drawCircle(canvas, 0, skill.color);
+      drawCircle(canvas, 0, skill.color, {});
 
       const innerDiv = document.createElement('div');
       innerDiv.className = 'skill-inner';
@@ -142,7 +97,17 @@ export const useSkillCircles = () => {
           if (idx !== null) {
             const inst = instances.current[parseInt(idx)];
             if (inst && !inst.animating && inst.currentPercent < inst.targetPercent) {
-              animateSkill(inst, inst.targetPercent, 1300);
+              inst.animating = true;
+              animateProgress({
+                canvas: inst.canvas,
+                label: inst.percentSpan,
+                startPercent: inst.currentPercent,
+                targetPercent: inst.targetPercent,
+                color: inst.color,
+                duration: 1300,
+              });
+              inst.currentPercent = inst.targetPercent;
+              inst.animating = false;
             }
           }
           observer.unobserve(entry.target);
@@ -156,7 +121,7 @@ export const useSkillCircles = () => {
   useEffect(() => {
     buildSkills();
     const handleResize = () => {
-      instances.current.forEach(inst => drawCircle(inst.canvas, inst.currentPercent, inst.color));
+      instances.current.forEach(inst => drawCircle(inst.canvas, inst.currentPercent, inst.color, {}));
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);

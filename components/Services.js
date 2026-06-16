@@ -1,34 +1,15 @@
 import { services } from '../utils/data';
 import TiltCard from './TiltCard';
-import { motion } from 'framer-motion';
+import SectionHeader from './SectionHeader';
 
 export default function Services() {
-  const fadeUp = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
-
   return (
     <section id="services" className="py-20 bg-slate-100/50 dark:bg-slate-800/50">
       <div className="container mx-auto px-6 max-w-6xl">
-        <motion.h2
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-slate-900 to-blue-600 dark:from-slate-100 dark:to-blue-400 bg-clip-text text-transparent"
-        >
-          Services
-        </motion.h2>
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          className="text-center text-slate-500 dark:text-slate-400 max-w-xl mx-auto mb-12"
-        >
-          Empowering digital experiences with quality &amp; creativity
-        </motion.div>
+        <SectionHeader
+          title="Services"
+          subtitle="Empowering digital experiences with quality &amp; creativity"
+        />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, idx) => (

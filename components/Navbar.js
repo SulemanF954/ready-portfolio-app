@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { NAV_ITEMS } from '../utils/constants';
 
 export default function Navbar({ darkMode, toggleDarkMode }) {
   const [menuActive, setMenuActive] = useState(false);
 
-  const navItems = ['Home', 'Services', 'About', 'Experience', 'Portfolio', 'Testimonials', 'Contact'];
+
 
   const navVariants = {
     hidden: { y: -100 },
@@ -32,7 +33,7 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
         </a>
 
         <div className="hidden md:flex gap-6 items-center">
-          {navItems.map((item) => (
+          {NAV_ITEMS.map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase().replace(' ', '')}`}
@@ -74,7 +75,7 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
             animate={{ opacity: 1, y: 0 }}
             className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-t border-black/5 dark:border-white/10 flex flex-col gap-4 p-4 z-50"
           >
-            {navItems.map((item) => (
+            {NAV_ITEMS.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase().replace(' ', '')}`}
