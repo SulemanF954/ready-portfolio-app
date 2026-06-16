@@ -1,5 +1,6 @@
 import { projects } from '../utils/data';
 import { motion } from 'framer-motion';
+import SectionHeader from './SectionHeader';
 
 export default function Portfolio() {
   const containerVariants = {
@@ -18,23 +19,10 @@ export default function Portfolio() {
   return (
     <section id="portfolio" className="py-20">
       <div className="container mx-auto px-6 max-w-6xl">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-slate-900 to-blue-600 dark:from-slate-100 dark:to-blue-400 bg-clip-text text-transparent"
-        >
-          Portfolio
-        </motion.h2>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-center text-slate-500 dark:text-slate-400 max-w-xl mx-auto mb-12"
-        >
-          Creative Projects, Real Impact
-        </motion.div>
+        <SectionHeader
+          title="Portfolio"
+          subtitle="Creative Projects, Real Impact"
+        />
 
         <motion.div
           variants={containerVariants}

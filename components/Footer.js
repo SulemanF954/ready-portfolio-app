@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { socialLinks } from "../utils/data";
+import { PERSONAL_INFO, NAV_ITEMS } from '../utils/constants';
 
 export default function Footer() {
   const fadeUp = {
@@ -11,12 +12,7 @@ export default function Footer() {
 
   const currentYear = new Date().getFullYear();
 
-  const socialIconMap = {
-    linkedin: { icon: "fab fa-linkedin-in", url: socialLinks.linkedin },
-    github: { icon: "fab fa-github", url: socialLinks.github },
-    facebook: { icon: "fab fa-facebook-f", url: socialLinks.facebook },
-    instagram: { icon: "fab fa-instagram", url: socialLinks.instagram },
-  };
+
 
   return (
     <footer className="bg-slate-900 dark:bg-slate-950 text-slate-300 py-10 mt-8">
@@ -40,31 +36,29 @@ export default function Footer() {
 
           {/* Navigation */}
           <div className="flex gap-6 flex-wrap justify-center">
-            {["Home", "Services", "About", "Experience", "Portfolio", "Testimonials", "Contact"].map(
-              (item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="hover:text-white transition"
-                >
-                  {item}
-                </a>
-              )
-            )}
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="hover:text-white transition"
+              >
+                {item}
+              </a>
+            ))}
           </div>
 
           {/* Social Links */}
           <div className="flex gap-4 text-2xl">
-            {Object.keys(socialIconMap).map((key) => (
+            {Object.entries(socialLinks).map(([key, url]) => (
               <motion.a
                 key={key}
-                href={socialIconMap[key].url}
+                href={url}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, rotate: 5 }}
                 className="hover:text-white transition"
               >
-                <i className={socialIconMap[key].icon}></i>
+                <i className={`fab fa-${key}`}></i>
               </motion.a>
             ))}
           </div>
@@ -73,10 +67,10 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row gap-4 text-center">
             <p>
               <i className="far fa-envelope"></i>{" "}
-              sulemanfarooq954@gmail.com
+              {PERSONAL_INFO.email}
             </p>
             <p>
-              <i className="fas fa-phone-alt"></i> +92307-6315295
+              <i className="fas fa-phone-alt"></i> {PERSONAL_INFO.phone}
             </p>
           </div>
         </motion.div>

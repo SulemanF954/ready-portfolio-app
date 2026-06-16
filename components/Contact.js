@@ -1,16 +1,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { socialLinks } from '../utils/data';
+import SectionHeader from './SectionHeader';
+import { PERSONAL_INFO, INITIAL_CONTACT_FORM } from '../utils/constants';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: 'Web Development',
-    timeline: '',
-    message: '',
-  });
+  const [formData, setFormData] = useState({ ...INITIAL_CONTACT_FORM });
   const [isSending, setIsSending] = useState(false);
   const [formStatus, setFormStatus] = useState({ type: '', message: '' });
   const [useWhatsApp, setUseWhatsApp] = useState(false);
@@ -24,17 +19,17 @@ export default function Contact() {
 
     if (useWhatsApp) {
       const message = `Name: ${formData.name}%0aEmail: ${formData.email}%0aPhone: ${formData.phone}%0aService: ${formData.service}%0aTimeline: ${formData.timeline}%0aMessage: ${formData.message}`;
-      window.open(`https://wa.me/923076315295?text=${message}`, '_blank');
+      window.open(`https://wa.me/${PERSONAL_INFO.phoneRaw}?text=${message}`, '_blank');
       setFormStatus({ type: 'success', message: 'Redirecting to WhatsApp...' });
       setIsSending(false);
-      setFormData({ name: '', email: '', phone: '', service: 'Web Development', timeline: '', message: '' });
+      setFormData({ ...INITIAL_CONTACT_FORM });
     } else {
       try {
         const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
         const data = await res.json();
         if (res.ok) {
           setFormStatus({ type: 'success', message: 'Message sent! I will get back to you soon.' });
-          setFormData({ name: '', email: '', phone: '', service: 'Web Development', timeline: '', message: '' });
+          setFormData({ ...INITIAL_CONTACT_FORM });
         } else {
           setFormStatus({ type: 'error', message: data.message || 'Something went wrong.' });
         }
@@ -49,23 +44,10 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 bg-slate-100/50 dark:bg-slate-800/50">
       <div className="container mx-auto px-6 max-w-6xl">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-slate-900 to-blue-600 dark:from-slate-100 dark:to-blue-400 bg-clip-text text-transparent"
-        >
-          Contact me
-        </motion.h2>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-center text-slate-500 dark:text-slate-400 max-w-xl mx-auto mb-12"
-        >
-          Cultivating Connections: Reach Out And Connect With Me
-        </motion.div>
+        <SectionHeader
+          title="Contact me"
+          subtitle="Cultivating Connections: Reach Out And Connect With Me"
+        />
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Left side animated contact card */}
@@ -84,11 +66,11 @@ export default function Contact() {
 
               <div className="space-y-5">
                 {[
-                  { label: 'Name', value: 'Suleman Farooq' },
-                  { label: 'Email', value: 'sulemanfarooq954@gmail.com' },
-                  { label: 'Phone', value: '+92 307 6315295' },
+                  { label: 'Name', value: PERSONAL_INFO.name },
+                  { label: 'Email', value: PERSONAL_INFO.email },
+                  { label: 'Phone', value: PERSONAL_INFO.phone },
                   { label: 'Availability', value: 'Freelance & Remote Work', sub: 'Open for full-time opportunities as well' },
-                  { label: 'Address', value: 'Multan, Pakistan' },
+                  { label: 'Address', value: PERSONAL_INFO.location },
                 ].map((item, idx) => (
                   <div key={idx} className="bg-white/10 rounded-2xl p-5 backdrop-blur-sm transition-all hover:bg-white/20">
                     <p className="text-sm uppercase tracking-[0.2em] text-blue-100/90">{item.label}</p>
