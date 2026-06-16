@@ -19,7 +19,15 @@ export default function Home() {
   useScrollReveal();
   const [cvLoading, setCvLoading] = useState(false);
 
-  const handleGenerateCV = () => generateCV(setCvLoading);
+  const [cvError, setCvError] = useState('');
+
+  const handleGenerateCV = () => {
+    setCvError('');
+    generateCV(setCvLoading).catch((error) => {
+      console.error('CV generation failed:', error);
+      setCvError(error.message || 'Failed to generate CV. Please try again.');
+    });
+  };
 
   return (
     <div className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-300">
@@ -28,6 +36,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      {cvError && (
+        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-red-100 text-red-700 px-6 py-3 rounded-xl shadow-lg">
+          {cvError}
+          <button onClick={() => setCvError('')} className="ml-4 font-bold">&times;</button>
+        </div>
+      )}
       <main>
         <Hero cvLoading={cvLoading} generateCV={handleGenerateCV} darkMode={darkMode} />
         <Services />

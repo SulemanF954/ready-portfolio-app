@@ -29,15 +29,29 @@ export default function Contact() {
       setFormData({ name: '', email: '', phone: '', service: 'Web Development', timeline: '', message: '' });
     } else {
       try {
-        const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
-        const data = await res.json();
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+        let data;
+        try {
+          data = await res.json();
+        } catch (parseError) {
+          console.error('Failed to parse contact API response:', parseError);
+          setFormStatus({ type: 'error', message: 'Received an unexpected response from the server.' });
+          return;
+        }
+
         if (res.ok) {
           setFormStatus({ type: 'success', message: 'Message sent! I will get back to you soon.' });
           setFormData({ name: '', email: '', phone: '', service: 'Web Development', timeline: '', message: '' });
         } else {
           setFormStatus({ type: 'error', message: data.message || 'Something went wrong.' });
         }
-      } catch {
+      } catch (error) {
+        console.error('Contact form submission failed:', error);
         setFormStatus({ type: 'error', message: 'Network error. Please try again.' });
       } finally {
         setIsSending(false);

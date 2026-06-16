@@ -7,6 +7,7 @@ export default function TiltCard({ children }) {
   const [rotateY, setRotateY] = useState(0);
 
   const handleMouseMove = (e) => {
+    if (!ref.current) return;
     const { left, top, width, height } = ref.current.getBoundingClientRect();
     const x = (e.clientX - left) / width - 0.5;
     const y = (e.clientY - top) / height - 0.5;

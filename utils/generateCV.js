@@ -26,7 +26,7 @@ export const generateCV = async (setLoading) => {
       const imgUrl = '/portfolio-cv-photo.jpg'
       doc.addImage(imgUrl, 'PNG', 35, 12, 50, 60)
     } catch (imgError) {
-      console.log('Profile image could not be loaded')
+      console.warn('Profile image could not be loaded:', imgError.message);
     }
 
     // Name
@@ -84,7 +84,9 @@ export const generateCV = async (setLoading) => {
     // Phone icon + number
     try {
       doc.addImage('/phone-icon.png', 'PNG', 25, yPosLeft, 3.5, 3.5);
-    } catch (e) { /* fallback to text */ doc.text('📞', 25, yPosLeft); }
+    } catch (e) {
+      console.warn('Phone icon could not be loaded, using fallback:', e.message);
+    }
     doc.setFont(undefined, 'normal');
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100); // gray
@@ -94,14 +96,18 @@ export const generateCV = async (setLoading) => {
     // Location icon + address
     try {
       doc.addImage('/location-icon.png', 'PNG', 25, yPosLeft, 3.5, 3.5);
-    } catch (e) { doc.text('📍', 25, yPosLeft); }
+    } catch (e) {
+      console.warn('Location icon could not be loaded, using fallback:', e.message);
+    }
     doc.text('Multan, Pakistan', 31, yPosLeft + 2.5);
     yPosLeft += 6;
 
     // Email icon + address
     try {
       doc.addImage('/email-icon.png', 'PNG', 25, yPosLeft, 3.5, 3.5);
-    } catch (e) { doc.text('✉️', 25, yPosLeft); }
+    } catch (e) {
+      console.warn('Email icon could not be loaded, using fallback:', e.message);
+    }
     doc.text('sulemanfarooq954@gmail.com', 31, yPosLeft + 2.5);
 
 
@@ -234,7 +240,7 @@ export const generateCV = async (setLoading) => {
     doc.save('Suleman_Farooq_Resume.pdf');
   } catch (error) {
     console.error('Error generating CV:', error);
-    alert('Failed to generate CV. Error: ' + error.message);
+    throw new Error('Failed to generate CV: ' + error.message);
   } finally {
     setLoading(false);
   }

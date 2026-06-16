@@ -7,6 +7,7 @@ export const useSkillCircles = () => {
 
   const drawCircle = (canvas, percent, color) => {
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
     const size = canvas.width;
     const center = size / 2;
     const radius = 52; // slightly smaller to give more space for inner content

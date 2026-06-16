@@ -5,11 +5,17 @@ import { AnimatePresence } from 'framer-motion';
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
+    let lenis;
+    try {
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      });
+    } catch (error) {
+      console.error('Failed to initialize smooth scrolling:', error);
+      return;
+    }
 
     function raf(time) {
       lenis.raf(time);
