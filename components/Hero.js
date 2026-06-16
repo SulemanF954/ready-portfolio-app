@@ -54,26 +54,42 @@ export default function Hero({ cvLoading, generateCV, darkMode }) {
     visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } },
   };
 
-  const AnimatedCounter = ({ target, suffix = '' }) => {
+  const statsRef = useRef(null);
+  const statsInView = useInView(statsRef, { once: true, margin: '-50px' });
+
+  const AnimatedCounter = ({ target, suffix = '', isActive }) => {
     const [count, setCount] = useState(0);
-    const counterRef = useRef(null);
-    const inView = useInView(counterRef, { once: true });
 
     useEffect(() => {
-      if (inView) {
-        let start = 0;
-        const duration = 2000;
-        const step = (timestamp) => {
-          if (!start) start = timestamp;
-          const progress = Math.min((timestamp - start) / duration, 1);
-          setCount(Math.floor(progress * target));
-          if (progress < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-      }
-    }, [inView, target]);
+      if (!isActive) return;
+      let start = 0;
+      const duration = 2000;
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setCount(Math.floor(eased * target));
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, [isActive, target]);
 
-    return <span ref={counterRef}>{count}{suffix}</span>;
+    return <span>{count}{suffix}</span>;
+  };
+
+  const statCardVariants = {
+    hidden: { y: 40, opacity: 0, scale: 0.8 },
+    visible: (i) => ({
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 100,
+        damping: 12,
+        delay: i * 0.15,
+      },
+    }),
   };
 
   const socialIcons = [
@@ -140,18 +156,26 @@ export default function Hero({ cvLoading, generateCV, darkMode }) {
               </MagneticButton>
             </div>
 
-            <div className="flex gap-6 mt-6">
+            <div ref={statsRef} className="flex gap-6 mt-6">
               {[
-                { label: 'Experience (yrs)', target: 2.5, suffix: '+' },
-                { label: 'Projects Done', target: 8 },
-                { label: 'Happy Clients', target: 4 },
+                { label: 'Experience (yrs)', target: 2, suffix: '+' },
+                { label: 'Projects Done', target: 8, suffix: '+' },
+                { label: 'Happy Clients', target: 4, suffix: '+' },
               ].map((stat, idx) => (
-                <div key={idx} className="stat-card bg-white dark:bg-slate-800 p-4 rounded-2xl text-center min-w-[110px] shadow">
+                <motion.div
+                  key={idx}
+                  custom={idx}
+                  variants={statCardVariants}
+                  initial="hidden"
+                  animate={statsInView ? 'visible' : 'hidden'}
+                  whileHover={{ scale: 1.08, y: -5 }}
+                  className="stat-card bg-white dark:bg-slate-800 p-4 rounded-2xl text-center min-w-[110px] shadow cursor-default"
+                >
                   <div className="text-3xl font-extrabold text-blue-600">
-                    <AnimatedCounter target={stat.target} suffix={stat.suffix || ''} />
+                    <AnimatedCounter target={stat.target} suffix={stat.suffix || ''} isActive={statsInView} />
                   </div>
                   <div className="text-sm text-slate-600 dark:text-slate-400">{stat.label}</div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
