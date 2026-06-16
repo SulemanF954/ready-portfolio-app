@@ -59,7 +59,7 @@ export default function Hero({ cvLoading, generateCV, darkMode }) {
         >
           <motion.div variants={itemVariants}>
             <h1 className="text-5xl font-extrabold leading-tight">
-              Hi, I'm<br />
+              Hi, I&apos;m<br />
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Suleman Farooq
               </span>

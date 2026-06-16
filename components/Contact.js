@@ -77,8 +77,8 @@ export default function Contact() {
             <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl p-8 text-white shadow-2xl transform transition-all duration-500 hover:scale-[1.02]">
               <div className="mb-6">
                 <div className="text-sm uppercase tracking-[0.3em] text-blue-200/80">Get in touch</div>
-                <h3 className="text-3xl font-bold mt-4">Let's connect</h3>
-                <p className="mt-2 text-blue-100/90">I'm always excited to work on new projects and collaborations.</p>
+                <h3 className="text-3xl font-bold mt-4">Let&apos;s connect</h3>
+                <p className="mt-2 text-blue-100/90">I&apos;m always excited to work on new projects and collaborations.</p>
               </div>
 
               <div className="space-y-5">
